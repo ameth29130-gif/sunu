@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunuFollowers — Boost Réseaux Sociaux 🇸🇳</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@600;700&family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  --bg:#09090f;
+  --surface:#111118;
+  --surface2:#1a1a25;
+  --surface3:#22222f;
+  --border:#ffffff0f;
+  --border2:#ffffff18;
+  --text:#f0f0ff;
+  --text2:#9090b0;
+  --text3:#5a5a78;
+  --accent:#4f8ef7;
+  --accent2:#7c6ff7;
+  --glow:rgba(79,142,247,0.25);
+  --green:#22d87a;
+  --yellow:#f7c948;
+  --red:#f75a5a;
+  --radius:18px;
+  --wave:#1c93e3;
+}
+[data-theme="light"]{
+  --bg:#f4f6ff;
+  --surface:#ffffff;
+  --surface2:#f0f2fc;
+  --surface3:#e8eaf8;
+  --border:#00000010;
+  --border2:#00000018;
+  --text:#0a0a1a;
+  --text2:#555577;
+  --text3:#9090b0;
+  --glow:rgba(79,142,247,0.15);
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  transition:background .3s,color .3s;
+}
+
+/* ─── NOISE OVERLAY ─────────── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.5;
+}
+
+/* ─── GLOWING ORBS ───────────── */
+.orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(79,142,247,.18),transparent 70%);top:-200px;right:-200px}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(124,111,247,.12),transparent 70%);bottom:-150px;left:-150px}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(34,216,122,.08),transparent 70%);top:40%;left:50%;transform:translate(-50%,-50%)}
+
+/* ─── LAYOUT ─────────────────── */
+.wrapper{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:24px 16px 60px}
+
+/* ─── TOPNAV ─────────────────── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  margin-bottom:24px;
+  backdrop-filter:blur(20px);
+}
+.logo{
+  font-family:'Syne',sans-serif;
+  font-size:20px;font-weight:800;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.nav-right{display:flex;align-items:center;gap:10px}
+.badge-wave{
+  display:flex;align-items:center;gap:5px;
+  background:rgba(28,147,227,.15);
+  border:1px solid rgba(28,147,227,.3);
+  color:var(--wave);
+  font-size:10px;font-weight:700;
+  padding:5px 10px;border-radius:100px;
+  letter-spacing:.5px;text-transform:uppercase;
+}
+.theme-toggle{
+  width:34px;height:34px;
+  border-radius:10px;
+  border:1px solid var(--border2);
+  background:var(--surface2);
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;transition:all .2s;
+}
+.theme-toggle:hover{background:var(--surface3)}
+
+/* ─── HERO ───────────────────── */
+.hero{text-align:center;margin-bottom:32px;animation:fadeUp .7s .1s both}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--surface2);border:1px solid var(--border2);
+  color:var(--text2);font-size:12px;font-weight:500;
+  padding:6px 14px;border-radius:100px;margin-bottom:16px;
+}
+.hero h1{
+  font-family:'Syne',sans-serif;font-size:36px;font-weight:800;
+  line-height:1.1;letter-spacing:-1px;margin-bottom:12px;
+}
+.hero h1 .grad{
+  background:linear-gradient(135deg,var(--accent),var(--accent2),#f75aaa);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero p{color:var(--text2);font-size:15px;line-height:1.6}
+.hero-stats{
+  display:flex;justify-content:center;gap:24px;
+  margin-top:20px;
+}
+.hero-stat .n{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--accent)}
+.hero-stat .l{font-size:11px;color:var(--text3);margin-top:2px}
+
+/* ─── SECTION TITLES ─────────── */
+.section-head{margin-bottom:14px}
+.section-head h2{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;letter-spacing:-.3px}
+.section-head p{font-size:12px;color:var(--text3);margin-top:3px}
+
+/* ─── PLATFORM TABS ──────────── */
+.platform-scroll{
+  display:flex;gap:8px;
+  overflow-x:auto;padding-bottom:4px;
+  scrollbar-width:none;margin-bottom:24px;
+  -webkit-overflow-scrolling:touch;
+}
+.platform-scroll::-webkit-scrollbar{display:none}
+.p-tab{
+  flex-shrink:0;
+  display:flex;align-items:center;gap:8px;
+  padding:10px 16px;
+  border:1.5px solid var(--border2);
+  border-radius:14px;
+  background:var(--surface);
+  cursor:pointer;transition:all .2s;
+  white-space:nowrap;
+}
+.p-tab .p-ico{
+  width:28px;height:28px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+}
+.p-tab .p-ico svg,.p-tab .p-ico img{width:16px;height:16px}
+.p-tab .p-txt{font-size:13px;font-weight:600;color:var(--text2)}
+.p-tab:hover{border-color:var(--accent);background:var(--surface2)}
+.p-tab.active{border-color:var(--accent);background:linear-gradient(135deg,rgba(79,142,247,.1),rgba(124,111,247,.07));box-shadow:0 0 20px var(--glow)}
+.p-tab.active .p-txt{color:var(--text)}
+/* colors */
+.p-tab[data-p="instagram"] .p-ico{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.p-tab[data-p="facebook"] .p-ico{background:#1877f2}
+.p-tab[data-p="tiktok"] .p-ico{background:#111}
+.p-tab[data-p="snapchat"] .p-ico{background:#ffdd00}
+.p-tab[data-p="youtube"] .p-ico{background:#ff0000}
+.p-tab[data-p="twitter"] .p-ico{background:#000}
+
+/* ─── PACK CARDS ─────────────── */
+.packs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.pack-card{
+  background:var(--surface);
+  border:1.5px solid var(--border2);
+  border-radius:var(--radius);
+  padding:18px 16px;
+  cursor:pointer;transition:all .25s;
+  position:relative;overflow:hidden;
+}
+.pack-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  opacity:0;transition:opacity .25s;
+}
+.pack-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 30px var(--glow)}
+.pack-card.selected{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,142,247,.2),0 12px 30px var(--glow)}
+.pack-card.selected::before{opacity:.05}
+.pack-popular{
+  position:absolute;top:10px;right:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:white;font-size:9px;font-weight:700;
+  padding:3px 8px;border-radius:100px;text-transform:uppercase;letter-spacing:.5px;
+}
+.pack-icon{font-size:22px;margin-bottom:8px;position:relative;z-index:1}
+.pack-qty{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;position:relative;z-index:1}
+.pack-qty span{font-size:12px;font-weight:500;color:var(--text2)}
+.pack-price{
+  font-size:22px;font-weight:800;font-family:'Syne',sans-serif;
+  color:var(--accent);margin-top:4px;position:relative;z-index:1;
+}
+.pack-price small{font-size:11px;color:var(--text3);font-weight:500}
+.pack-perks{margin-top:10px;position:relative;z-index:1}
+.pack-perk{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);margin-top:4px}
+.pack-perk svg{width:11px;height:11px;color:var(--green);flex-shrink:0}
+
+/* ─── SELECTED PACK BANNER ────── */
+.selected-banner{
+  background:linear-gradient(135deg,rgba(79,142,247,.12),rgba(124,111,247,.08));
+  border:1.5px solid rgba(79,142,247,.25);
+  border-radius:var(--radius);
+  padding:18px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:24px;
+  animation:fadeUp .4s both;
+}
+.sel-left .sel-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+.sel-left .sel-pack{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-top:3px}
+.sel-right .sel-price{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--accent);text-align:right}
+.sel-right .sel-sub{font-size:11px;color:var(--text3);text-align:right;margin-top:2px}
+
+/* ─── FORM ───────────────────── */
+.form-card{
+  background:var(--surface);
+  border:1.5px solid var(--border2);
+  border-radius:var(--radius);
+  padding:22px;
+  margin-bottom:20px;
+}
+.form-card h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px}
+.field-wrap{position:relative}
+.field-wrap .f-icon{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;display:flex;align-items:center;justify-content:center;
+  pointer-events:none;opacity:.6;
+}
+.field-wrap input,.field-wrap select{
+  width:100%;
+  padding:13px 14px 13px 42px;
+  background:var(--surface2);
+  border:1.5px solid var(--border2);
+  border-radius:13px;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;color:var(--text);
+  transition:border-color .2s,box-shadow .2s;
+  -webkit-appearance:none;
+}
+.field-wrap input::placeholder{color:var(--text3)}
+.field-wrap input:focus,.field-wrap select:focus{
+  outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(79,142,247,.12);
+  background:var(--surface3);
+}
+.field-wrap select{padding-right:40px;cursor:pointer}
+.field-wrap .f-arr{position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;opacity:.5}
+.error-msg{display:none;font-size:11px;color:var(--red);margin-top:6px;font-weight:500}
+.error-msg.show{display:block}
+
+/* Guarantee badges row */
+.guarantees{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.guarantee{
+  flex:1;min-width:calc(33% - 8px);
+  background:var(--surface);
+  border:1px solid var(--border2);
+  border-radius:13px;padding:12px 10px;text-align:center;
+}
+.guarantee .g-ico{font-size:18px;margin-bottom:5px}
+.guarantee .g-title{font-size:11px;font-weight:700;color:var(--text)}
+.guarantee .g-sub{font-size:10px;color:var(--text3);margin-top:2px}
+
+/* ─── PAYMENT SECTION ─────────── */
+.pay-section{margin-bottom:24px}
+.pay-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:14px}
+.pay-methods{display:flex;flex-direction:column;gap:10px}
+.pay-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;padding:16px 20px;
+  border:none;border-radius:16px;
+  font-family:'Syne',sans-serif;font-size:15px;font-weight:800;
+  cursor:pointer;text-decoration:none;
+  transition:transform .2s,box-shadow .2s;
+  color:white;
+}
+.pay-btn:hover{transform:translateY(-2px)}
+.pay-btn:active{transform:translateY(1px)}
+.pay-btn-left{display:flex;align-items:center;gap:12px}
+.pay-btn-left svg{width:22px;height:22px;flex-shrink:0}
+.pay-btn-name{font-size:15px;font-weight:800;text-align:left;display:block}
+.pay-btn-sub{font-size:11px;font-weight:400;opacity:.8;text-align:left;display:block}
+.pay-btn-arrow{font-size:18px;opacity:.7}
+.btn-wave-style{background:linear-gradient(135deg,#1c93e3,#0f6fb5);box-shadow:0 8px 24px rgba(28,147,227,.4)}
+.btn-wave-style:hover{box-shadow:0 14px 32px rgba(28,147,227,.55)}
+.btn-om-style{background:linear-gradient(135deg,#ff6b00,#e05500);box-shadow:0 8px 24px rgba(255,107,0,.35)}
+.btn-om-style:hover{box-shadow:0 14px 32px rgba(255,107,0,.5)}
+.btn-pp-style{background:linear-gradient(135deg,#003087,#009cde);box-shadow:0 8px 24px rgba(0,48,135,.35)}
+.btn-pp-style:hover{box-shadow:0 14px 32px rgba(0,48,135,.5)}
+.pay-secure-note{text-align:center;font-size:11px;color:var(--text3);margin-top:12px}
+.pay-secure-note span{color:var(--green)}
+
+/* ─── ORDER TRACKER ─────────── */
+.tracker-card{
+  background:var(--surface);
+  border:1.5px solid var(--border2);
+  border-radius:var(--radius);padding:22px;
+  margin-bottom:24px;
+}
+.tracker-card h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:16px}
+.tracker-input-row{display:flex;gap:8px}
+.tracker-input-row input{
+  flex:1;padding:12px 14px;
+  background:var(--surface2);border:1.5px solid var(--border2);
+  border-radius:12px;font-size:14px;color:var(--text);
+  font-family:'DM Sans',sans-serif;
+}
+.tracker-input-row input::placeholder{color:var(--text3)}
+.tracker-input-row input:focus{outline:none;border-color:var(--accent)}
+.btn-track{
+  padding:12px 18px;
+  background:var(--surface3);
+  border:1.5px solid var(--border2);
+  border-radius:12px;color:var(--text);
+  font-size:13px;font-weight:600;
+  cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif;
+  transition:all .2s;
+}
+.btn-track:hover{border-color:var(--accent);color:var(--accent)}
+.tracker-result{margin-top:16px;display:none}
+.tracker-result.show{display:block}
+.tracker-steps{display:flex;flex-direction:column;gap:0}
+.t-step{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border)}
+.t-step:last-child{border-bottom:none}
+.t-dot-wrap{display:flex;flex-direction:column;align-items:center;gap:0}
+.t-dot{
+  width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;flex-shrink:0;margin-top:2px;
+}
+.t-dot.done{background:var(--green);color:white}
+.t-dot.active{background:var(--accent);color:white;box-shadow:0 0 12px rgba(79,142,247,.5);animation:pulse 1.5s infinite}
+.t-dot.pending{background:var(--surface3);color:var(--text3)}
+.t-line{width:1.5px;flex:1;background:var(--border2);margin:4px 0}
+.t-step:last-child .t-line{display:none}
+.t-body .t-title{font-size:13px;font-weight:700}
+.t-body .t-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.t-body .t-time{font-size:10px;color:var(--text3);margin-top:4px}
+
+/* ─── TESTIMONIALS ───────────── */
+.testimonials{margin-bottom:24px}
+.reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.review{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:14px;
+}
+.review-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.avatar{
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:white;
+  flex-shrink:0;
+}
+.reviewer-info .r-name{font-size:12px;font-weight:700}
+.reviewer-info .r-net{font-size:10px;color:var(--text3)}
+.stars{color:#f7c948;font-size:11px;margin-bottom:5px}
+.review-text{font-size:12px;color:var(--text2);line-height:1.5}
+
+/* ─── FAQ ────────────────────── */
+.faq{margin-bottom:24px}
+.faq-item{
+  border:1px solid var(--border2);
+  border-radius:13px;margin-bottom:8px;
+  overflow:hidden;
+}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:15px 18px;cursor:pointer;
+  font-size:13px;font-weight:600;gap:12px;
+  background:var(--surface);transition:background .2s;
+}
+.faq-q:hover{background:var(--surface2)}
+.faq-q svg{width:16px;height:16px;color:var(--text3);flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  font-size:13px;color:var(--text2);line-height:1.6;
+  transition:max-height .3s ease,padding .3s;
+  background:var(--surface2);
+  padding:0 18px;
+}
+.faq-item.open .faq-a{max-height:200px;padding:14px 18px}
+
+/* ─── FOOTER ─────────────────── */
+footer{
+  text-align:center;
+  border-top:1px solid var(--border);
+  padding-top:24px;margin-top:32px;
+}
+footer .f-logo{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:6px;
+}
+footer p{font-size:11px;color:var(--text3);line-height:1.6}
+footer .f-links{display:flex;justify-content:center;gap:16px;margin-top:10px}
+footer .f-links a{font-size:11px;color:var(--text3);text-decoration:none}
+footer .f-links a:hover{color:var(--accent)}
+
+/* ─── TOAST ──────────────────── */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--green);color:white;
+  font-size:13px;font-weight:600;
+  padding:12px 24px;border-radius:100px;
+  box-shadow:0 8px 24px rgba(34,216,122,.35);
+  z-index:9999;transition:transform .4s cubic-bezier(0.16,1,0.3,1);
+  white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ─── ANIMATIONS ─────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(79,142,247,.5)}
+  50%{box-shadow:0 0 0 6px rgba(79,142,247,0)}
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-8px)}
+  40%{transform:translateX(8px)}
+  60%{transform:translateX(-5px)}
+  80%{transform:translateX(5px)}
+}
+
+/* Staggered load */
+.animate{opacity:0;animation:fadeUp .6s both}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}
+.d4{animation-delay:.26s}.d5{animation-delay:.33s}.d6{animation-delay:.4s}
+.d7{animation-delay:.47s}.d8{animation-delay:.54s}.d9{animation-delay:.61s}
+
+/* RESPONSIVE */
+@media(max-width:380px){
+  .packs-grid{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:28px}
+  .reviews-grid{grid-template-columns:1fr}
+  .guarantees .guarantee{min-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="wrapper">
+
+<!-- NAV -->
+<nav class="animate d1">
+  <div class="logo">SunuFollowers</div>
+  <div class="nav-right">
+    <div class="badge-wave">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Wave Vérifié
+    </div>
+    <button class="theme-toggle" id="theme-btn">🌙</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero animate d2">
+  <div class="hero-tag">🇸🇳 N°1 au Sénégal · Boost Réseaux Sociaux</div>
+  <h1>Développez votre<br><span class="grad">audience rapidement</span></h1>
+  <p>Followers réels, livraison rapide, prix accessibles.<br>Payez facilement avec Wave Mobile Money.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="n">12K+</div><div class="l">Clients satisfaits</div></div>
+    <div class="hero-stat"><div class="n">99%</div><div class="l">Taux de satisfaction</div></div>
+    <div class="hero-stat"><div class="n">24h</div><div class="l">Livraison max</div></div>
+  </div>
+</div>
+
+<!-- PLATFORM TABS -->
+<div class="animate d3">
+<div class="section-head"><h2>📱 Choisir la plateforme</h2></div>
+<div class="platform-scroll" id="platform-tabs">
+
+  <div class="p-tab active" data-p="instagram">
+    <div class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div>
+    <span class="p-txt">Instagram</span>
+  </div>
+
+  <div class="p-tab" data-p="facebook">
+    <div class="p-ico"><svg viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div>
+    <span class="p-txt">Facebook</span>
+  </div>
+
+  <div class="p-tab" data-p="tiktok">
+    <div class="p-ico"><svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.77 1.52V6.75a4.85 4.85 0 01-1-.06z"/></svg></div>
+    <span class="p-txt">TikTok</span>
+  </div>
+
+  <div class="p-tab" data-p="snapchat">
+    <div class="p-ico"><svg viewBox="0 0 24 24" fill="black" width="18"><path d="M12 2C8.686 2 6 4.686 6 8v1.382c-.392.09-.82-.04-1.316-.382-.11.44.05.8.45 1.12-.694.21-1.384.47-1.384.88 0 .31.226.57.59.66-.44.44-.66.88-.66 1.32 0 .31.088.57.22.79-.132.31-.22.62-.22.93 0 1.06.88 1.98 2.2 2.51.308.57.658 1.01 1.318 1.45-.572.21-1.32.43-2.42.43-.132.44.088.75.748.75.176 0 .88-.04 1.98-.43.748.48 1.628.79 2.64.79s1.892-.31 2.64-.79c1.1.39 1.804.43 1.98.43.66 0 .88-.31.748-.75-1.1 0-1.848-.22-2.42-.43.66-.44 1.01-.88 1.318-1.45 1.32-.53 2.2-1.45 2.2-2.51 0-.31-.088-.62-.22-.93.132-.22.22-.48.22-.79 0-.44-.22-.88-.66-1.32.364-.09.59-.35.59-.66 0-.41-.69-.67-1.384-.88.4-.32.56-.68.45-1.12-.496.342-.924.472-1.316.382V8C18 4.686 15.314 2 12 2z"/></svg></div>
+    <span class="p-txt">Snapchat</span>
+  </div>
+
+  <div class="p-tab" data-p="youtube">
+    <div class="p-ico"><svg viewBox="0 0 24 24" fill="white"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon fill="#ff0000" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></div>
+    <span class="p-txt">YouTube</span>
+  </div>
+
+  <div class="p-tab" data-p="twitter">
+    <div class="p-ico"><svg viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
+    <span class="p-txt">Twitter / X</span>
+  </div>
+
+</div>
+</div>
+
+<!-- PACKS -->
+<div class="animate d4">
+<div class="section-head"><h2 id="packs-title">🚀 Packs Instagram</h2><p>Sélectionnez votre pack — paiement 100% sécurisé</p></div>
+<div class="packs-grid" id="packs-grid">
+  <!-- Rendered by JS -->
+</div>
+</div>
+
+<!-- SELECTED BANNER -->
+<div class="selected-banner animate d5" id="sel-banner">
+  <div class="sel-left">
+    <div class="sel-label">Pack sélectionné</div>
+    <div class="sel-pack" id="sel-pack-name">1 000 Followers Instagram</div>
+  </div>
+  <div class="sel-right">
+    <div class="sel-price" id="sel-pack-price">5 000 FCFA</div>
+    <div class="sel-sub">Paiement via Wave</div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-card animate d5">
+  <h3>📋 Informations de livraison</h3>
+
+  <div class="field">
+    <label id="link-label">Lien du compte Instagram</label>
+    <div class="field-wrap">
+      <span class="f-icon" id="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </span>
+      <input type="text" id="account-link" placeholder="instagram.com/votre_compte">
+    </div>
+    <div class="error-msg" id="link-err">⚠️ Entrez le lien de votre compte.</div>
+  </div>
+
+  <div class="field">
+    <label>Votre numéro Wave</label>
+    <div class="field-wrap">
+      <span class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </span>
+      <input type="tel" id="phone-num" placeholder="77 XXX XX XX">
+    </div>
+    <div class="error-msg" id="phone-err">⚠️ Entrez votre numéro Wave.</div>
+  </div>
+
+  <div class="field">
+    <label>Pack choisi</label>
+    <div class="field-wrap">
+      <span class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+      </span>
+      <select id="pack-select" onchange="onPackSelectChange()">
+        <!-- Filled by JS -->
+      </select>
+      <span class="f-arr">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><polyline points="6 9 12 15 18 9"/></svg>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- GUARANTEES -->
+<div class="guarantees animate d6">
+  <div class="guarantee">
+    <div class="g-ico">⚡</div>
+    <div class="g-title">Livraison 24h</div>
+    <div class="g-sub">Démarrage immédiat</div>
+  </div>
+  <div class="guarantee">
+    <div class="g-ico">👥</div>
+    <div class="g-title">Followers réels</div>
+    <div class="g-sub">Comptes actifs</div>
+  </div>
+  <div class="guarantee">
+    <div class="g-ico">🔁</div>
+    <div class="g-title">Garantie drop</div>
+    <div class="g-sub">Remboursé si perte</div>
+  </div>
+  <div class="guarantee">
+    <div class="g-ico">🔒</div>
+    <div class="g-title">100% Sécurisé</div>
+    <div class="g-sub">Aucun mot de passe</div>
+  </div>
+  <div class="guarantee">
+    <div class="g-ico">🛡️</div>
+    <div class="g-title">Sans risque</div>
+    <div class="g-sub">Compte protégé</div>
+  </div>
+  <div class="guarantee">
+    <div class="g-ico">💬</div>
+    <div class="g-title">Support 7j/7</div>
+    <div class="g-sub">WhatsApp & Wave</div>
+  </div>
+</div>
+
+<!-- PAYMENT METHODS -->
+<div class="pay-section animate d6">
+  <div class="pay-title">💳 Choisir votre méthode de paiement</div>
+  <div class="pay-methods">
+
+    <!-- WAVE -->
+    <a href="https://pay.wave.com/m/M_sn_LPsBgQ8JBOTL/c/sn/" class="pay-btn btn-wave-style" data-pay="wave">
+      <div class="pay-btn-left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        <div>
+          <span class="pay-btn-name">Payer avec Wave</span>
+          <span class="pay-btn-sub">Wave Mobile Money · Sénégal</span>
+        </div>
+      </div>
+      <span class="pay-btn-arrow">→</span>
+    </a>
+
+    <!-- ORANGE MONEY -->
+    <a href="https://sugu.orange-sonatel.com/oms-links/auth?token=szyceq7tduiqdd6l2z" class="pay-btn btn-om-style" data-pay="orange" target="_blank">
+      <div class="pay-btn-left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <div>
+          <span class="pay-btn-name">Payer avec Orange Money</span>
+          <span class="pay-btn-sub">Orange Money · Sénégal</span>
+        </div>
+      </div>
+      <span class="pay-btn-arrow">→</span>
+    </a>
+
+    <!-- PAYPAL -->
+    <button class="pay-btn btn-pp-style" data-pay="paypal">
+      <div class="pay-btn-left">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 00-.607-.541c-.013.076-.026.175-.041.26-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 00-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 00.554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 01.923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.477z"/></svg>
+        <div>
+          <span class="pay-btn-name">Payer avec PayPal</span>
+          <span class="pay-btn-sub"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a8c9c5cddcc09a9186999b98e8cfc5c9c1c486cbc7c5">[email&#160;protected]</a></span>
+        </div>
+      </div>
+      <span class="pay-btn-arrow">→</span>
+    </button>
+
+  </div>
+  <div class="pay-secure-note">🔒 <span>Paiements 100% sécurisés</span> · Le boost commence dès réception</div>
+</div>
+
+<!-- ORDER TRACKER -->
+<div class="tracker-card animate d7">
+  <h3>📦 Suivi de commande</h3>
+  <div class="tracker-input-row">
+    <input type="text" id="tracker-id" placeholder="Entrez votre N° de commande (ex: SN-2025-xxxx)">
+    <button class="btn-track">Suivre</button>
+  </div>
+  <div class="tracker-result" id="tracker-result">
+    <div class="tracker-steps" id="tracker-steps"></div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials animate d7">
+  <div class="section-head"><h2>⭐ Avis clients</h2><p>Ce que nos clients disent de nous</p></div>
+  <div class="reviews-grid">
+
+    <div class="review">
+      <div class="review-header">
+        <div class="avatar">AM</div>
+        <div class="reviewer-info">
+          <div class="r-name">Aminata M.</div>
+          <div class="r-net">📸 Instagram</div>
+        </div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <div class="review-text">Super service ! J'ai commandé 1000 followers, reçus en moins de 12h. Très professionnel 🙏</div>
+    </div>
+
+    <div class="review">
+      <div class="review-header">
+        <div class="avatar">OD</div>
+        <div class="reviewer-info">
+          <div class="r-name">Oumar D.</div>
+          <div class="r-net">🎵 TikTok</div>
+        </div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <div class="review-text">Mes vidéos TikTok buzzent maintenant ! Le pack 5K m'a changé la vie. Je recommande à 100%</div>
+    </div>
+
+    <div class="review">
+      <div class="review-header">
+        <div class="avatar">FK</div>
+        <div class="reviewer-info">
+          <div class="r-name">Fatou K.</div>
+          <div class="r-net">👥 Facebook</div>
+        </div>
+      </div>
+      <div class="stars">★★★★☆</div>
+      <div class="review-text">Ma page boutique a explosé après le boost Facebook. Les clients arrivent seuls maintenant !</div>
+    </div>
+
+    <div class="review">
+      <div class="review-header">
+        <div class="avatar">MB</div>
+        <div class="reviewer-info">
+          <div class="r-name">Mamadou B.</div>
+          <div class="r-net">📸 Instagram</div>
+        </div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <div class="review-text">Paiement Wave simple et rapide. Followers arrivés comme promis. Service top ! 🔥</div>
+    </div>
+
+    <div class="review">
+      <div class="review-header">
+        <div class="avatar">RN</div>
+        <div class="reviewer-info">
+          <div class="r-name">Rokhaya N.</div>
+          <div class="r-net">👻 Snapchat</div>
+        </div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <div class="review-text">Le support répond vite sur WhatsApp. J'avais une question, résolue en 5 min. Bravo !</div>
+    </div>
+
+    <div class="review">
+      <div class="review-header">
+        <div class="avatar">IS</div>
+        <div class="reviewer-info">
+          <div class="r-name">Ibrahima S.</div>
+          <div class="r-net">▶️ YouTube</div>
+        </div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <div class="review-text">Ma chaîne YouTube a gagné 5000 abonnés. Contenu valorisé, monétisation en vue ! Merci SunuFollowers</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq animate d8">
+  <div class="section-head"><h2>❓ Questions fréquentes</h2></div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      Est-ce que les followers sont de vrais comptes ?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="faq-a">Oui, nous fournissons uniquement des followers de comptes réels et actifs. Pas de bots. Cela garantit que votre compte reste sûr et que votre engagement reste naturel aux yeux des algorithmes.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      Combien de temps prend la livraison ?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="faq-a">Le démarrage est immédiat après confirmation du paiement Wave. La livraison complète prend entre 2 et 24 heures selon le pack choisi. Les petits packs (500-1000) sont généralement livrés en moins de 2h.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      Mon compte est-il en sécurité ?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="faq-a">100% sécurisé. Nous n'avons jamais besoin de votre mot de passe. Nous n'avons besoin que du lien public de votre profil. Notre méthode est totalement conforme aux conditions d'utilisation des plateformes.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      Que faire si des followers se désabonnent ?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="faq-a">Nous offrons une garantie de 30 jours. Si vous perdez des followers livrés dans ce délai, nous les remplaçons gratuitement. Contactez notre support via WhatsApp avec votre numéro de commande.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      Comment payer avec Wave ?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="faq-a">Cliquez sur le bouton "Payer avec Wave". Vous serez redirigé vers l'application Wave où vous confirmez le paiement. Une fois payé, notre système reçoit la confirmation automatiquement et lance votre commande.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      Peut-on commander pour plusieurs comptes ?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="faq-a">Oui, absolument ! Faites une commande distincte pour chaque compte. Pour les commandes en gros (agences, influenceurs), contactez-nous directement sur WhatsApp pour des tarifs préférentiels.</div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="animate d9">
+  <div class="f-logo">SunuFollowers 🇸🇳</div>
+  <p>La plateforme de boost réseaux sociaux #1 au Sénégal.<br>Paiement sécurisé via Wave Mobile Money.</p>
+  <div class="f-links">
+    <a href="#">CGV</a>
+    <a href="#">Confidentialité</a>
+    <a href="#">Contact</a>
+    <a href="#">WhatsApp</a>
+  </div>
+  <p style="margin-top:12px;font-size:10px">© 2025 SunuFollowers · Dakar, Sénégal · Tous droits réservés<br>
+  <span id="admin-trigger" style="color:transparent;user-select:none;cursor:default;font-size:10px" 
+    onclick="adminClickCount++" title="">· · ·</span></p>
+</footer>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Commande envoyée ! Vérifiez Wave.</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ─── DATA ─────────────────────────────────────────────
+const PLATFORMS = {
+  instagram:{name:'Instagram',emoji:'📸',inputLabel:'Lien du compte Instagram',placeholder:'instagram.com/votre_compte',metric:'Followers',color:'linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366)',icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>`},
+  facebook:{name:'Facebook',emoji:'👥',inputLabel:'Lien de la page Facebook',placeholder:'facebook.com/votre_page',metric:'Abonnés',color:'#1877f2',icon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>`},
+  tiktok:{name:'TikTok',emoji:'🎵',inputLabel:'Lien du profil TikTok',placeholder:'tiktok.com/@votre_compte',metric:'Followers',color:'linear-gradient(135deg,#111,#333)',icon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.77 1.52V6.75a4.85 4.85 0 01-1-.06z"/></svg>`},
+  snapchat:{name:'Snapchat',emoji:'👻',inputLabel:"Nom d'utilisateur Snapchat",placeholder:'votre_username',metric:'Abonnés',color:'linear-gradient(135deg,#ffdd00,#ffa500)',icon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.686 2 6 4.686 6 8v1.382c-.392.09-.82-.04-1.316-.382-.11.44.05.8.45 1.12-.694.21-1.384.47-1.384.88 0 .31.226.57.59.66-.44.44-.66.88-.66 1.32 0 .31.088.57.22.79-.132.31-.22.62-.22.93 0 1.06.88 1.98 2.2 2.51.308.57.658 1.01 1.318 1.45-.572.21-1.32.43-2.42.43-.132.44.088.75.748.75.176 0 .88-.04 1.98-.43.748.48 1.628.79 2.64.79s1.892-.31 2.64-.79c1.1.39 1.804.43 1.98.43.66 0 .88-.31.748-.75-1.1 0-1.848-.22-2.42-.43.66-.44 1.01-.88 1.318-1.45 1.32-.53 2.2-1.45 2.2-2.51 0-.31-.088-.62-.22-.93.132-.22.22-.48.22-.79 0-.44-.22-.88-.66-1.32.364-.09.59-.35.59-.66 0-.41-.69-.67-1.384-.88.4-.32.56-.68.45-1.12-.496.342-.924.472-1.316.382V8C18 4.686 15.314 2 12 2z"/></svg>`},
+  youtube:{name:'YouTube',emoji:'▶️',inputLabel:'Lien de la chaîne YouTube',placeholder:'youtube.com/@votre_chaine',metric:'Abonnés',color:'#ff0000',icon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon fill="#fff" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>`},
+  twitter:{name:'Twitter / X',emoji:'🐦',inputLabel:'Lien du profil Twitter/X',placeholder:'twitter.com/votre_compte',metric:'Abonnés',color:'#111',icon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`}
+};
+
+const PACKS = [
+  {qty:'500',price:'2 500',popular:false,perks:['Livraison ~2h','Qualité garantie','Sans mot de passe']},
+  {qty:'1 000',price:'5 000',popular:true,perks:['Livraison ~6h','Followers actifs','Garantie 30j']},
+  {qty:'5 000',price:'20 000',popular:false,perks:['Livraison ~12h','Boost algorithmique','Support prioritaire']},
+  {qty:'10 000',price:'35 000',popular:false,perks:['Livraison ~24h','Meilleur rapport qualité/prix','Manager dédié']}
+];
+
+let currentPlatform = 'instagram';
+let selectedPackIdx = 1; // 1000 by default
+
+// ─── INIT ─────────────────────────────────────────────
+function init(){
+  renderPacks();
+  updatePlatformUI();
+  updateBanner();
+  renderPackSelect();
+}
+
+// ─── RENDER PACKS ─────────────────────────────────────
+function renderPacks(){
+  const p = PLATFORMS[currentPlatform];
+  const grid = document.getElementById('packs-grid');
+  grid.innerHTML = PACKS.map((pk,i)=>`
+    <div class="pack-card ${i===selectedPackIdx?'selected':''}" data-pack="${i}">
+      ${pk.popular?`<div class="pack-popular">⚡ Populaire</div>`:''}
+      <div class="pack-icon">${p.emoji}</div>
+      <div class="pack-qty">${pk.qty} <span>${p.metric}</span></div>
+      <div class="pack-price">${pk.price} <small>FCFA</small></div>
+      <div class="pack-perks">
+        ${pk.perks.map(perk=>`
+          <div class="pack-perk">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            ${perk}
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+  // wire clicks
+  grid.querySelectorAll('.pack-card').forEach(card => {
+    card.addEventListener('click', () => selectPack(parseInt(card.dataset.pack)));
+  });
+}
+
+function renderPackSelect(){
+  const p = PLATFORMS[currentPlatform];
+  const sel = document.getElementById('pack-select');
+  sel.innerHTML = PACKS.map((pk,i)=>
+    `<option value="${i}" ${i===selectedPackIdx?'selected':''}>${pk.qty} ${p.metric} — ${pk.price} FCFA</option>`
+  ).join('');
+}
+
+function selectPack(i){
+  selectedPackIdx = i;
+  renderPacks();
+  updateBanner();
+  renderPackSelect();
+}
+
+function onPackSelectChange(){
+  selectedPackIdx = parseInt(document.getElementById('pack-select').value);
+  renderPacks();
+  updateBanner();
+}
+
+// ─── PLATFORM ─────────────────────────────────────────
+function setPlatform(tab){
+  document.querySelectorAll('.p-tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  currentPlatform = tab.dataset.p;
+  updatePlatformUI();
+  renderPacks();
+  updateBanner();
+  renderPackSelect();
+  // reset
+  document.getElementById('account-link').value='';
+  document.getElementById('link-err').classList.remove('show');
+}
+
+function updatePlatformUI(){
+  const p = PLATFORMS[currentPlatform];
+  document.getElementById('packs-title').textContent = `🚀 Packs ${p.name}`;
+  document.getElementById('link-label').textContent = p.inputLabel;
+  document.getElementById('account-link').placeholder = p.placeholder;
+  document.getElementById('f-icon').innerHTML = p.icon;
+}
+
+function updateBanner(){
+  const p = PLATFORMS[currentPlatform];
+  const pk = PACKS[selectedPackIdx];
+  document.getElementById('sel-pack-name').textContent = `${pk.qty} ${p.metric} ${p.name}`;
+  document.getElementById('sel-pack-price').textContent = `${pk.price} FCFA`;
+}
+
+// ─── PAY ──────────────────────────────────────────────
+function handlePay(e, method){
+  const pk = PACKS[selectedPackIdx];
+  const p = PLATFORMS[currentPlatform];
+
+  // Orange Money et PayPal : popup directe, pas besoin de valider le formulaire
+  if(method === 'orange'){
+    // lien direct Orange Money — pas besoin de bloquer
+    showToast('✅ Redirection vers Orange Money...');
+    return;
+  }
+  if(method === 'paypal'){
+    e.preventDefault();
+    showPaypalModal(pk, p);
+    return;
+  }
+
+  // Wave : valider le formulaire avant de rediriger
+  let valid = true;
+  const link = document.getElementById('account-link');
+  const phone = document.getElementById('phone-num');
+  const linkErr = document.getElementById('link-err');
+  const phoneErr = document.getElementById('phone-err');
+
+  linkErr.classList.remove('show');
+  phoneErr.classList.remove('show');
+
+  if(link.value.trim().length < 3){
+    valid = false;
+    linkErr.classList.add('show');
+    link.classList.remove('shake'); void link.offsetWidth; link.classList.add('shake');
+    setTimeout(()=>link.classList.remove('shake'),500);
+  }
+  if(phone.value.trim().length < 8){
+    valid = false;
+    phoneErr.classList.add('show');
+    phone.classList.remove('shake'); void phone.offsetWidth; phone.classList.add('shake');
+    setTimeout(()=>phone.classList.remove('shake'),500);
+  }
+
+  if(!valid){ e.preventDefault(); return; }
+  showToast('✅ Redirection vers Wave...');
+}
+
+function showOrangeModal(pk, p){
+  const existing = document.getElementById('om-modal');
+  if(existing) existing.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'om-modal';
+  modal.style.cssText = `
+    position:fixed;inset:0;z-index:9998;
+    background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;padding:20px;
+    animation:fadeUp .3s both;
+  `;
+  modal.innerHTML = \`
+    <div style="background:var(--surface);border:1.5px solid var(--border2);border-radius:24px;padding:28px 24px;max-width:360px;width:100%;position:relative;">
+      <button onclick="document.getElementById('om-modal').remove()" style="position:absolute;top:14px;right:14px;background:var(--surface2);border:none;border-radius:8px;width:28px;height:28px;cursor:pointer;color:var(--text2);font-size:16px;">✕</button>
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="font-size:36px;margin-bottom:8px;">🟠</div>
+        <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;">Paiement Orange Money</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:4px;">Suivez ces étapes simples</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:#ff6b00;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;">Composez le code</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:2px;">Tapez <strong style="color:#ff6b00;">#144#</strong> sur votre téléphone</div>
+          </div>
+        </div>
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:#ff6b00;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;">Choisir "Transfert"</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:2px;">Sélectionnez "Transfert d'argent"</div>
+          </div>
+        </div>
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:#ff6b00;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;">Entrez le numéro</div>
+            <div style="font-size:15px;font-weight:800;color:#ff6b00;margin-top:4px;letter-spacing:1px;">77 029 96 03</div>
+          </div>
+        </div>
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:#ff6b00;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">4</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;">Montant à envoyer</div>
+            <div style="font-size:15px;font-weight:800;color:#ff6b00;margin-top:4px;">\${pk.price} FCFA</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:2px;">Pour : \${pk.qty} \${p.metric} \${p.name}</div>
+          </div>
+        </div>
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:#22d87a;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">5</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;">Envoyez votre preuve</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:2px;">Envoyez le screenshot à notre WhatsApp après paiement</div>
+          </div>
+        </div>
+      </div>
+      <a href="https://wa.me/221770299603" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#25d366,#1da851);color:white;border-radius:12px;padding:14px;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;text-decoration:none;">
+        <svg viewBox="0 0 24 24" fill="white" width="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.478 2 2 6.478 2 12c0 1.85.504 3.585 1.38 5.07L2 22l5.085-1.33A9.945 9.945 0 0012 22c5.522 0 10-4.478 10-10S17.522 2 11.999 2z" fill-rule="evenodd"/></svg>
+        Contacter sur WhatsApp
+      </a>
+    </div>
+  \`;
+  document.body.appendChild(modal);
+  modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.remove(); });
+}
+
+// ─── TRACKER ──────────────────────────────────────────
+const MOCK_ORDERS = {
+  'SN-2025-1234':{status:2,platform:'Instagram',qty:'1 000',price:'5 000'},
+  'SN-2025-5678':{status:3,platform:'TikTok',qty:'5 000',price:'20 000'},
+  'SN-2025-9012':{status:1,platform:'Facebook',qty:'500',price:'2 500'},
+};
+const STEPS_DEF = [
+  {title:'Paiement reçu',sub:'Wave a confirmé le paiement'},
+  {title:'Commande validée',sub:'Votre commande est en traitement'},
+  {title:'Livraison en cours',sub:'Les followers arrivent sur votre compte'},
+  {title:'Livraison terminée',sub:'100% des followers livrés ✓'},
+];
+
+function trackOrder(){
+  const id = document.getElementById('tracker-id').value.trim().toUpperCase();
+  const res = document.getElementById('tracker-result');
+  const steps = document.getElementById('tracker-steps');
+
+  const order = MOCK_ORDERS[id];
+  if(!order){
+    steps.innerHTML = `<div style="color:var(--red);font-size:13px;padding:12px 0">❌ Commande introuvable. Vérifiez le numéro.</div>`;
+    res.classList.add('show');
+    return;
+  }
+
+  steps.innerHTML = STEPS_DEF.map((s,i)=>{
+    const state = i < order.status ? 'done' : i === order.status ? 'active' : 'pending';
+    const dot = state==='done' ? '✓' : state==='active' ? '●' : '○';
+    return `
+      <div class="t-step">
+        <div class="t-dot-wrap">
+          <div class="t-dot ${state}">${dot}</div>
+          <div class="t-line"></div>
+        </div>
+        <div class="t-body">
+          <div class="t-title" style="color:${state==='pending'?'var(--text3)':'var(--text)'}">${s.title}</div>
+          <div class="t-sub">${s.sub}</div>
+          ${state==='done'?`<div class="t-time">✅ Complété</div>`:''}
+          ${state==='active'?`<div class="t-time" style="color:var(--accent)">⏳ En cours...</div>`:''}
+        </div>
+      </div>
+    `;
+  }).join('');
+  res.classList.add('show');
+}
+
+// ─── FAQ ──────────────────────────────────────────────
+function toggleFaq(el){
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+// ─── THEME ────────────────────────────────────────────
+function toggleTheme(){
+  const html = document.documentElement;
+  const isDark = html.dataset.theme === 'dark';
+  html.dataset.theme = isDark ? 'light' : 'dark';
+  document.querySelector('.theme-toggle').textContent = isDark ? '🌙' : '☀️';
+}
+
+// ─── TOAST ────────────────────────────────────────────
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3500);
+}
+
+function showPaypalModal(pk, p){
+  const existing = document.getElementById('pp-modal');
+  if(existing) existing.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'pp-modal';
+  modal.style.cssText = `
+    position:fixed;inset:0;z-index:9998;
+    background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;padding:20px;
+    animation:fadeUp .3s both;
+  `;
+  modal.innerHTML = `
+    <div style="background:var(--surface);border:1.5px solid var(--border2);border-radius:24px;padding:28px 24px;max-width:360px;width:100%;position:relative;">
+      <button onclick="document.getElementById('pp-modal').remove()" style="position:absolute;top:14px;right:14px;background:var(--surface2);border:none;border-radius:8px;width:28px;height:28px;cursor:pointer;color:var(--text2);font-size:16px;">✕</button>
+
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="font-size:36px;margin-bottom:8px;">🔵</div>
+        <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;">Paiement PayPal</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:4px;">Suivez ces étapes simples</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:#003087;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;">Ouvrez PayPal</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:2px;">App ou site <strong>paypal.com</strong> → cliquez "Envoyer"</div>
+          </div>
+        </div>
+
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:#003087;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;">Entrez l'adresse email</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:6px;background:var(--surface3);border-radius:8px;padding:10px 12px;">
+              <span style="font-size:14px;font-weight:800;color:#009cde;flex:1;word-break:break-all;">ameth29.130@gmail.com</span>
+              <button onclick="navigator.clipboard.writeText('ameth29.130@gmail.com');this.textContent='✅'" style="background:#003087;color:white;border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;cursor:pointer;flex-shrink:0;">Copier</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:#003087;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;">Montant à envoyer</div>
+            <div style="font-size:15px;font-weight:800;color:#009cde;margin-top:4px;">${pk.price} FCFA</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:2px;">Pour : ${pk.qty} ${p.metric} ${p.name}</div>
+          </div>
+        </div>
+
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:#003087;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">4</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;">Note obligatoire</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:2px;">Dans la note PayPal, écrivez votre <strong>compte ${p.name}</strong> et votre <strong>numéro Wave</strong></div>
+          </div>
+        </div>
+
+        <div style="background:rgba(34,216,122,.08);border:1px solid rgba(34,216,122,.2);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:#22d87a;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">5</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--green);">Envoyez la preuve</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:2px;">Screenshot du paiement à envoyer sur WhatsApp pour confirmation rapide</div>
+          </div>
+        </div>
+
+      </div>
+
+      <a href="https://wa.me/221770299603" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#25d366,#1da851);color:white;border-radius:12px;padding:14px;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;text-decoration:none;">
+        <svg viewBox="0 0 24 24" fill="white" width="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.478 2 2 6.478 2 12c0 1.85.504 3.585 1.38 5.07L2 22l5.085-1.33A9.945 9.945 0 0012 22c5.522 0 10-4.478 10-10S17.522 2 11.999 2z" fill-rule="evenodd"/></svg>
+        Confirmer sur WhatsApp après paiement
+      </a>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.remove(); });
+}
+
+// ─── BOOT ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function(){
+  init();
+
+  // Theme toggle
+  const themeBtn = document.getElementById('theme-btn');
+  if(themeBtn) themeBtn.addEventListener('click', toggleTheme);
+
+  // Platform tabs
+  document.querySelectorAll('.p-tab').forEach(tab => {
+    tab.addEventListener('click', () => setPlatform(tab));
+  });
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => toggleFaq(q));
+  });
+
+  // Track order button
+  const trackBtn = document.getElementById('btn-track-order');
+  if(trackBtn) trackB
