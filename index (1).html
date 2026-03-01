@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunuFollowers — Boost Réseaux Sociaux 🇸🇳</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#09090f;--surface:#111118;--surface2:#1a1a25;--surface3:#22222f;
+  --border:#ffffff0f;--border2:#ffffff18;--text:#f0f0ff;--text2:#9090b0;--text3:#5a5a78;
+  --accent:#4f8ef7;--accent2:#7c6ff7;--glow:rgba(79,142,247,0.25);
+  --green:#22d87a;--yellow:#f7c948;--red:#f75a5a;--radius:18px;--wave:#1c93e3;
+}
+[data-theme="light"]{
+  --bg:#f4f6ff;--surface:#fff;--surface2:#f0f2fc;--surface3:#e8eaf8;
+  --border:#00000010;--border2:#00000018;--text:#0a0a1a;--text2:#555577;--text3:#9090b0;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s}
+.orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(79,142,247,.18),transparent 70%);top:-200px;right:-200px}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(124,111,247,.12),transparent 70%);bottom:-150px;left:-150px}
+.wrapper{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:24px 16px 60px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);margin-bottom:24px}
+.logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-right{display:flex;align-items:center;gap:10px}
+.badge-wave{display:flex;align-items:center;gap:5px;background:rgba(28,147,227,.15);border:1px solid rgba(28,147,227,.3);color:var(--wave);font-size:10px;font-weight:700;padding:5px 10px;border-radius:100px;letter-spacing:.5px;text-transform:uppercase}
+.theme-toggle{width:34px;height:34px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s}
+.hero{text-align:center;margin-bottom:32px;animation:fadeUp .7s .1s both}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border2);color:var(--text2);font-size:12px;font-weight:500;padding:6px 14px;border-radius:100px;margin-bottom:16px}
+.hero h1{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;line-height:1.1;letter-spacing:-1px;margin-bottom:12px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2),#f75aaa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--text2);font-size:15px;line-height:1.6}
+.hero-stats{display:flex;justify-content:center;gap:24px;margin-top:20px}
+.hero-stat .n{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--accent)}
+.hero-stat .l{font-size:11px;color:var(--text3);margin-top:2px}
+.section-head{margin-bottom:14px}
+.section-head h2{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;letter-spacing:-.3px}
+.section-head p{font-size:12px;color:var(--text3);margin-top:3px}
+.platform-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;margin-bottom:24px;-webkit-overflow-scrolling:touch}
+.platform-scroll::-webkit-scrollbar{display:none}
+.p-tab{flex-shrink:0;display:flex;align-items:center;gap:8px;padding:10px 16px;border:1.5px solid var(--border2);border-radius:14px;background:var(--surface);cursor:pointer;transition:all .2s;white-space:nowrap}
+.p-tab .p-ico{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+.p-tab .p-ico svg{width:16px;height:16px}
+.p-tab .p-txt{font-size:13px;font-weight:600;color:var(--text2)}
+.p-tab:hover,.p-tab.active{border-color:var(--accent);background:rgba(79,142,247,.08)}
+.p-tab.active .p-txt{color:var(--text)}
+.p-tab[data-p="instagram"] .p-ico{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.p-tab[data-p="facebook"] .p-ico{background:#1877f2}
+.p-tab[data-p="tiktok"] .p-ico{background:#111}
+.p-tab[data-p="snapchat"] .p-ico{background:#ffdd00}
+.p-tab[data-p="youtube"] .p-ico{background:#ff0000}
+.p-tab[data-p="twitter"] .p-ico{background:#000}
+.packs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.pack-card{background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--radius);padding:18px 16px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.pack-card:hover,.pack-card.selected{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 30px var(--glow)}
+.pack-card.selected{box-shadow:0 0 0 3px rgba(79,142,247,.2),0 12px 30px var(--glow)}
+.pack-popular{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-size:9px;font-weight:700;padding:3px 8px;border-radius:100px;text-transform:uppercase;letter-spacing:.5px}
+.pack-icon{font-size:22px;margin-bottom:8px}
+.pack-qty{font-family:'Syne',sans-serif;font-size:20px;font-weight:800}
+.pack-qty span{font-size:12px;font-weight:500;color:var(--text2)}
+.pack-price{font-size:22px;font-weight:800;font-family:'Syne',sans-serif;color:var(--accent);margin-top:4px}
+.pack-price small{font-size:11px;color:var(--text3);font-weight:500}
+.pack-perks{margin-top:10px}
+.pack-perk{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);margin-top:4px}
+.pack-perk svg{width:11px;height:11px;color:var(--green);flex-shrink:0}
+.selected-banner{background:linear-gradient(135deg,rgba(79,142,247,.12),rgba(124,111,247,.08));border:1.5px solid rgba(79,142,247,.25);border-radius:var(--radius);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.sel-left .sel-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+.sel-left .sel-pack{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-top:3px}
+.sel-right .sel-price{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--accent);text-align:right}
+.sel-right .sel-sub{font-size:11px;color:var(--text3);text-align:right;margin-top:2px}
+.form-card{background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--radius);padding:22px;margin-bottom:20px}
+.form-card h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px}
+.field-wrap{position:relative}
+.field-wrap .f-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:.6}
+.field-wrap input,.field-wrap select{width:100%;padding:13px 14px 13px 42px;background:var(--surface2);border:1.5px solid var(--border2);border-radius:13px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);transition:border-color .2s,box-shadow .2s;-webkit-appearance:none}
+.field-wrap input::placeholder{color:var(--text3)}
+.field-wrap input:focus,.field-wrap select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,142,247,.12);background:var(--surface3)}
+.field-wrap select{padding-right:40px;cursor:pointer}
+.field-wrap .f-arr{position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;opacity:.5}
+.error-msg{display:none;font-size:11px;color:var(--red);margin-top:6px;font-weight:500}
+.error-msg.show{display:block}
+.guarantees{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.guarantee{flex:1;min-width:calc(33% - 8px);background:var(--surface);border:1px solid var(--border2);border-radius:13px;padding:12px 10px;text-align:center}
+.guarantee .g-ico{font-size:18px;margin-bottom:5px}
+.guarantee .g-title{font-size:11px;font-weight:700;color:var(--text)}
+.guarantee .g-sub{font-size:10px;color:var(--text3);margin-top:2px}
+.pay-section{margin-bottom:24px}
+.pay-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:14px}
+.pay-methods{display:flex;flex-direction:column;gap:10px}
+.pay-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:16px 20px;border:none;border-radius:16px;font-family:'Syne',sans-serif;font-size:15px;font-weight:800;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s;color:white}
+.pay-btn:hover{transform:translateY(-2px)}
+.pay-btn:active{transform:translateY(1px)}
+.pay-btn-left{display:flex;align-items:center;gap:12px}
+.pay-btn-left svg{width:22px;height:22px;flex-shrink:0}
+.pay-btn-name{font-size:15px;font-weight:800;text-align:left;display:block}
+.pay-btn-sub{font-size:11px;font-weight:400;opacity:.8;text-align:left;display:block}
+.pay-btn-arrow{font-size:18px;opacity:.7}
+.btn-wave-style{background:linear-gradient(135deg,#1c93e3,#0f6fb5);box-shadow:0 8px 24px rgba(28,147,227,.4)}
+.btn-om-style{background:linear-gradient(135deg,#ff6b00,#e05500);box-shadow:0 8px 24px rgba(255,107,0,.35)}
+.btn-pp-style{background:linear-gradient(135deg,#003087,#009cde);box-shadow:0 8px 24px rgba(0,48,135,.35)}
+.pay-secure-note{text-align:center;font-size:11px;color:var(--text3);margin-top:12px}
+.pay-secure-note span{color:var(--green)}
+.tracker-card{background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--radius);padding:22px;margin-bottom:24px}
+.tracker-card h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:16px}
+.tracker-input-row{display:flex;gap:8px}
+.tracker-input-row input{flex:1;padding:12px 14px;background:var(--surface2);border:1.5px solid var(--border2);border-radius:12px;font-size:14px;color:var(--text);font-family:'DM Sans',sans-serif}
+.tracker-input-row input::placeholder{color:var(--text3)}
+.tracker-input-row input:focus{outline:none;border-color:var(--accent)}
+.btn-track{padding:12px 18px;background:var(--surface3);border:1.5px solid var(--border2);border-radius:12px;color:var(--text);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-track:hover{border-color:var(--accent);color:var(--accent)}
+.tracker-result{margin-top:16px;display:none}
+.tracker-result.show{display:block}
+.t-step{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border)}
+.t-step:last-child{border-bottom:none}
+.t-dot-wrap{display:flex;flex-direction:column;align-items:center}
+.t-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:2px}
+.t-dot.done{background:var(--green);color:white}
+.t-dot.active{background:var(--accent);color:white;box-shadow:0 0 12px rgba(79,142,247,.5);animation:pulse 1.5s infinite}
+.t-dot.pending{background:var(--surface3);color:var(--text3)}
+.t-line{width:1.5px;flex:1;background:var(--border2);margin:4px 0;min-height:10px}
+.t-step:last-child .t-line{display:none}
+.t-body .t-title{font-size:13px;font-weight:700}
+.t-body .t-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.t-body .t-time{font-size:10px;color:var(--text3);margin-top:4px}
+.testimonials{margin-bottom:24px}
+.reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.review{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px}
+.review-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:white;flex-shrink:0}
+.reviewer-info .r-name{font-size:12px;font-weight:700}
+.reviewer-info .r-net{font-size:10px;color:var(--text3)}
+.stars{color:#f7c948;font-size:11px;margin-bottom:5px}
+.review-text{font-size:12px;color:var(--text2);line-height:1.5}
+.faq{margin-bottom:24px}
+.faq-item{border:1px solid var(--border2);border-radius:13px;margin-bottom:8px;overflow:hidden}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;cursor:pointer;font-size:13px;font-weight:600;gap:12px;background:var(--surface);transition:background .2s}
+.faq-q:hover{background:var(--surface2)}
+.faq-q svg{width:16px;height:16px;color:var(--text3);flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;font-size:13px;color:var(--text2);line-height:1.6;transition:max-height .3s ease,padding .3s;background:var(--surface2);padding:0 18px}
+.faq-item.open .faq-a{max-height:200px;padding:14px 18px}
+footer{text-align:center;border-top:1px solid var(--border);padding-top:24px;margin-top:32px}
+footer .f-logo{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+footer p{font-size:11px;color:var(--text3);line-height:1.6}
+footer .f-links{display:flex;justify-content:center;gap:16px;margin-top:10px}
+footer .f-links a{font-size:11px;color:var(--text3);text-decoration:none}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green);color:white;font-size:13px;font-weight:600;padding:12px 24px;border-radius:100px;box-shadow:0 8px 24px rgba(34,216,122,.35);z-index:9999;transition:transform .4s cubic-bezier(0.16,1,0.3,1);white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.modal-overlay{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal-box{background:var(--surface);border:1.5px solid var(--border2);border-radius:24px;padding:28px 24px;max-width:360px;width:100%;position:relative;max-height:90vh;overflow-y:auto}
+.modal-close-btn{position:absolute;top:14px;right:14px;background:var(--surface2);border:none;border-radius:8px;width:28px;height:28px;cursor:pointer;color:var(--text2);font-size:16px;display:flex;align-items:center;justify-content:center}
+.modal-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:4px}
+.modal-sub{font-size:13px;color:var(--text2);margin-bottom:20px}
+.modal-step{background:var(--surface2);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
+.step-num{border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;color:white}
+.step-title{font-size:13px;font-weight:700}
+.step-sub{font-size:12px;color:var(--text2);margin-top:2px}
+.step-highlight{font-size:15px;font-weight:800;margin-top:4px}
+.copy-row{display:flex;align-items:center;gap:8px;margin-top:6px;background:var(--surface3);border-radius:8px;padding:10px 12px}
+.copy-val{font-size:13px;font-weight:800;flex:1;word-break:break-all}
+.copy-btn{border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;cursor:pointer;flex-shrink:0;color:white}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#25d366,#1da851);color:white;border-radius:12px;padding:14px;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;text-decoration:none;margin-top:4px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(79,142,247,.5)}50%{box-shadow:0 0 0 6px rgba(79,142,247,0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.animate{opacity:0;animation:fadeUp .6s both}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}.d4{animation-delay:.26s}.d5{animation-delay:.33s}.d6{animation-delay:.4s}.d7{animation-delay:.47s}.d8{animation-delay:.54s}
+@media(max-width:380px){.packs-grid{grid-template-columns:1fr 1fr}.hero h1{font-size:26px}.reviews-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<div class="wrapper">
+
+<!-- NAV -->
+<nav class="animate d1">
+  <div class="logo">SunuFollowers</div>
+  <div class="nav-right">
+    <div class="badge-wave">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Wave Vérifié
+    </div>
+    <button class="theme-toggle" id="theme-btn">🌙</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero animate d2">
+  <div class="hero-tag">🇸🇳 N°1 au Sénégal · Boost Réseaux Sociaux</div>
+  <h1>Développez votre<br><span class="grad">audience rapidement</span></h1>
+  <p>Followers réels, livraison rapide, prix accessibles.<br>Payez facilement avec Wave, Orange Money ou PayPal.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="n">12K+</div><div class="l">Clients satisfaits</div></div>
+    <div class="hero-stat"><div class="n">99%</div><div class="l">Satisfaction</div></div>
+    <div class="hero-stat"><div class="n">24h</div><div class="l">Livraison max</div></div>
+  </div>
+</div>
+
+<!-- PLATFORM TABS -->
+<div class="animate d3">
+  <div class="section-head"><h2>📱 Choisir la plateforme</h2></div>
+  <div class="platform-scroll" id="platform-tabs">
+    <div class="p-tab active" data-p="instagram">
+      <div class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div>
+      <span class="p-txt">Instagram</span>
+    </div>
+    <div class="p-tab" data-p="facebook">
+      <div class="p-ico"><svg viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div>
+      <span class="p-txt">Facebook</span>
+    </div>
+    <div class="p-tab" data-p="tiktok">
+      <div class="p-ico"><svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.77 1.52V6.75a4.85 4.85 0 01-1-.06z"/></svg></div>
+      <span class="p-txt">TikTok</span>
+    </div>
+    <div class="p-tab" data-p="snapchat">
+      <div class="p-ico"><svg viewBox="0 0 24 24" fill="black" width="18"><path d="M12 2C8.686 2 6 4.686 6 8v1.382c-.392.09-.82-.04-1.316-.382-.11.44.05.8.45 1.12-.694.21-1.384.47-1.384.88 0 .31.226.57.59.66-.44.44-.66.88-.66 1.32 0 .31.088.57.22.79-.132.31-.22.62-.22.93 0 1.06.88 1.98 2.2 2.51.308.57.658 1.01 1.318 1.45-.572.21-1.32.43-2.42.43-.132.44.088.75.748.75.176 0 .88-.04 1.98-.43.748.48 1.628.79 2.64.79s1.892-.31 2.64-.79c1.1.39 1.804.43 1.98.43.66 0 .88-.31.748-.75-1.1 0-1.848-.22-2.42-.43.66-.44 1.01-.88 1.318-1.45 1.32-.53 2.2-1.45 2.2-2.51 0-.31-.088-.62-.22-.93.132-.22.22-.48.22-.79 0-.44-.22-.88-.66-1.32.364-.09.59-.35.59-.66 0-.41-.69-.67-1.384-.88.4-.32.56-.68.45-1.12-.496.342-.924.472-1.316.382V8C18 4.686 15.314 2 12 2z"/></svg></div>
+      <span class="p-txt">Snapchat</span>
+    </div>
+    <div class="p-tab" data-p="youtube">
+      <div class="p-ico"><svg viewBox="0 0 24 24" fill="white"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon fill="#ff0000" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></div>
+      <span class="p-txt">YouTube</span>
+    </div>
+    <div class="p-tab" data-p="twitter">
+      <div class="p-ico"><svg viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
+      <span class="p-txt">Twitter/X</span>
+    </div>
+  </div>
+</div>
+
+<!-- PACKS -->
+<div class="animate d4">
+  <div class="section-head"><h2 id="packs-title">🚀 Packs Instagram</h2><p>Sélectionnez votre pack</p></div>
+  <div class="packs-grid" id="packs-grid"></div>
+</div>
+
+<!-- SELECTED BANNER -->
+<div class="selected-banner animate d5">
+  <div class="sel-left">
+    <div class="sel-label">Pack sélectionné</div>
+    <div class="sel-pack" id="sel-pack-name">1 000 Followers Instagram</div>
+  </div>
+  <div class="sel-right">
+    <div class="sel-price" id="sel-pack-price">5 000 FCFA</div>
+    <div class="sel-sub">Paiement sécurisé</div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-card animate d5">
+  <h3>📋 Informations de livraison</h3>
+  <div class="field">
+    <label id="link-label">Lien du compte Instagram</label>
+    <div class="field-wrap">
+      <span class="f-icon" id="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </span>
+      <input type="text" id="account-link" placeholder="instagram.com/votre_compte">
+    </div>
+    <div class="error-msg" id="link-err">⚠️ Entrez le lien de votre compte.</div>
+  </div>
+  <div class="field">
+    <label>Votre numéro Wave / téléphone</label>
+    <div class="field-wrap">
+      <span class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </span>
+      <input type="tel" id="phone-num" placeholder="77 XXX XX XX">
+    </div>
+    <div class="error-msg" id="phone-err">⚠️ Entrez votre numéro de téléphone.</div>
+  </div>
+  <div class="field">
+    <label>Pack choisi</label>
+    <div class="field-wrap">
+      <span class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+      </span>
+      <select id="pack-select"></select>
+      <span class="f-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </div>
+  </div>
+</div>
+
+<!-- GUARANTEES -->
+<div class="guarantees animate d6">
+  <div class="guarantee"><div class="g-ico">⚡</div><div class="g-title">Livraison 24h</div><div class="g-sub">Démarrage immédiat</div></div>
+  <div class="guarantee"><div class="g-ico">👥</div><div class="g-title">Followers réels</div><div class="g-sub">Comptes actifs</div></div>
+  <div class="guarantee"><div class="g-ico">🔁</div><div class="g-title">Garantie drop</div><div class="g-sub">Remboursé si perte</div></div>
+  <div class="guarantee"><div class="g-ico">🔒</div><div class="g-title">100% Sécurisé</div><div class="g-sub">Sans mot de passe</div></div>
+  <div class="guarantee"><div class="g-ico">🛡️</div><div class="g-title">Sans risque</div><div class="g-sub">Compte protégé</div></div>
+  <div class="guarantee"><div class="g-ico">💬</div><div class="g-title">Support 7j/7</div><div class="g-sub">WhatsApp & Wave</div></div>
+</div>
+
+<!-- PAYMENT METHODS -->
+<div class="pay-section animate d6">
+  <div class="pay-title">💳 Choisir votre méthode de paiement</div>
+  <div class="pay-methods">
+    <a href="https://pay.wave.com/m/M_sn_LPsBgQ8JBOTL/c/sn/" class="pay-btn btn-wave-style" id="btn-wave" target="_blank">
+      <div class="pay-btn-left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        <div><span class="pay-btn-name">Payer avec Wave</span><span class="pay-btn-sub">Wave Mobile Money · Sénégal</span></div>
+      </div>
+      <span class="pay-btn-arrow">→</span>
+    </a>
+    <a href="https://sugu.orange-sonatel.com/oms-links/auth?token=szyceq7tduiqdd6l2z" class="pay-btn btn-om-style" id="btn-orange" target="_blank">
+      <div class="pay-btn-left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <div><span class="pay-btn-name">Payer avec Orange Money</span><span class="pay-btn-sub">Orange Money · Sénégal</span></div>
+      </div>
+      <span class="pay-btn-arrow">→</span>
+    </a>
+    <button class="pay-btn btn-pp-style" id="btn-paypal">
+      <div class="pay-btn-left">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 00-.607-.541c-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 00-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 00.554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 01.923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.477z"/></svg>
+        <div><span class="pay-btn-name">Payer avec PayPal</span><span class="pay-btn-sub">ameth29.130@gmail.com</span></div>
+      </div>
+      <span class="pay-btn-arrow">→</span>
+    </button>
+  </div>
+  <div class="pay-secure-note">🔒 <span>Paiements 100% sécurisés</span> · Le boost commence dès réception</div>
+</div>
+
+<!-- TRACKER -->
+<div class="tracker-card animate d7">
+  <h3>📦 Suivi de commande</h3>
+  <div class="tracker-input-row">
+    <input type="text" id="tracker-id" placeholder="N° de commande (ex: SN-2025-0001)">
+    <button class="btn-track" id="btn-track">Suivre</button>
+  </div>
+  <div class="tracker-result" id="tracker-result">
+    <div id="tracker-steps"></div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials animate d7">
+  <div class="section-head"><h2>⭐ Avis clients</h2></div>
+  <div class="reviews-grid">
+    <div class="review"><div class="review-header"><div class="avatar">AM</div><div class="reviewer-info"><div class="r-name">Aminata M.</div><div class="r-net">📸 Instagram</div></div></div><div class="stars">★★★★★</div><div class="review-text">Super service ! 1000 followers reçus en moins de 12h. Très professionnel 🙏</div></div>
+    <div class="review"><div class="review-header"><div class="avatar">OD</div><div class="reviewer-info"><div class="r-name">Oumar D.</div><div class="r-net">🎵 TikTok</div></div></div><div class="stars">★★★★★</div><div class="review-text">Mes vidéos TikTok buzzent maintenant ! Le pack 5K m'a changé la vie 🔥</div></div>
+    <div class="review"><div class="review-header"><div class="avatar">FK</div><div class="reviewer-info"><div class="r-name">Fatou K.</div><div class="r-net">👥 Facebook</div></div></div><div class="stars">★★★★☆</div><div class="review-text">Ma page boutique a explosé après le boost Facebook. Les clients arrivent seuls !</div></div>
+    <div class="review"><div class="review-header"><div class="avatar">MB</div><div class="reviewer-info"><div class="r-name">Mamadou B.</div><div class="r-net">📸 Instagram</div></div></div><div class="stars">★★★★★</div><div class="review-text">Paiement Wave simple et rapide. Followers arrivés comme promis 💯</div></div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq animate d8">
+  <div class="section-head"><h2>❓ Questions fréquentes</h2></div>
+  <div class="faq-item"><div class="faq-q">Les followers sont-ils de vrais comptes ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a">Oui, uniquement des followers de comptes réels et actifs. Pas de bots. Votre compte reste sûr.</div></div>
+  <div class="faq-item"><div class="faq-q">Combien de temps prend la livraison ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a">Démarrage immédiat après paiement. Livraison complète entre 2 et 24 heures selon le pack.</div></div>
+  <div class="faq-item"><div class="faq-q">Mon compte est-il en sécurité ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a">100% sécurisé. Nous n'avons jamais besoin de votre mot de passe. Seulement le lien public de votre profil.</div></div>
+  <div class="faq-item"><div class="faq-q">Que faire si des followers se désabonnent ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a">Garantie 30 jours. Si vous perdez des followers livrés, nous les remplaçons gratuitement via WhatsApp.</div></div>
+  <div class="faq-item"><div class="faq-q">Peut-on commander pour plusieurs comptes ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a">Oui ! Une commande par compte. Pour les agences, contactez-nous sur WhatsApp pour des tarifs préférentiels.</div></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">SunuFollowers 🇸🇳</div>
+  <p>La plateforme de boost réseaux sociaux #1 au Sénégal.</p>
+  <div class="f-links">
+    <a href="#">CGV</a>
+    <a href="#">Contact</a>
+    <a href="https://wa.me/221770299603" target="_blank">WhatsApp</a>
+  </div>
+  <p style="margin-top:12px;font-size:10px">© 2025 SunuFollowers · Dakar, Sénégal
+  <span id="admin-trigger" style="color:transparent;user-select:none;cursor:default;font-size:10px">· · ·</span></p>
+</footer>
+
+</div><!-- /wrapper -->
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-orange">
+  <div class="modal-box">
+    <button class="modal-close-btn" id="close-orange">✕</button>
+    <div style="text-align:center;font-size:36px;margin-bottom:8px">🟠</div>
+    <div class="modal-title">Paiement Orange Money</div>
+    <div class="modal-sub">Suivez ces étapes simples</div>
+    <div class="modal-step"><div class="step-num" style="background:#ff6b00">1</div><div><div class="step-title">Composez le code</div><div class="step-sub">Tapez <strong style="color:#ff6b00">#144#</strong> sur votre téléphone</div></div></div>
+    <div class="modal-step"><div class="step-num" style="background:#ff6b00">2</div><div><div class="step-title">Choisir "Transfert"</div><div class="step-sub">Sélectionnez "Transfert d'argent"</div></div></div>
+    <div class="modal-step"><div class="step-num" style="background:#ff6b00">3</div><div><div class="step-title">Entrez le numéro</div><div class="step-highlight" style="color:#ff6b00">77 029 96 03</div></div></div>
+    <div class="modal-step" id="om-amount-step"><div class="step-num" style="background:#ff6b00">4</div><div><div class="step-title">Montant à envoyer</div><div class="step-highlight" style="color:#ff6b00" id="om-amount">5 000 FCFA</div><div class="step-sub" id="om-pack">Pack sélectionné</div></div></div>
+    <div class="modal-step"><div class="step-num" style="background:#22d87a">5</div><div><div class="step-title" style="color:var(--green)">Envoyez la preuve</div><div class="step-sub">Screenshot du paiement sur WhatsApp</div></div></div>
+    <a href="https://wa.me/221770299603" target="_blank" class="whatsapp-btn">
+      <svg viewBox="0 0 24 24" fill="white" width="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.478 2 2 6.478 2 12c0 1.85.504 3.585 1.38 5.07L2 22l5.085-1.33A9.945 9.945 0 0012 22c5.522 0 10-4.478 10-10S17.522 2 11.999 2z"/></svg>
+      Confirmer sur WhatsApp
+    </a>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-paypal">
+  <div class="modal-box">
+    <button class="modal-close-btn" id="close-paypal">✕</button>
+    <div style="text-align:center;font-size:36px;margin-bottom:8px">🔵</div>
+    <div class="modal-title">Paiement PayPal</div>
+    <div class="modal-sub">Suivez ces étapes simples</div>
+    <div class="modal-step"><div class="step-num" style="background:#003087">1</div><div><div class="step-title">Ouvrez PayPal</div><div class="step-sub">App ou site paypal.com → cliquez "Envoyer"</div></div></div>
+    <div class="modal-step"><div class="step-num" style="background:#003087">2</div><div><div class="step-title">Entrez l'adresse email</div><div class="copy-row"><span class="copy-val" style="color:#009cde">ameth29.130@gmail.com</span><button class="copy-btn" style="background:#003087" id="copy-email">Copier</button></div></div></div>
+    <div class="modal-step"><div class="step-num" style="background:#003087">3</div><div><div class="step-title">Montant à envoyer</div><div class="step-highlight" style="color:#009cde" id="pp-amount">5 000 FCFA</div><div class="step-sub" id="pp-pack">Pack sélectionné</div></div></div>
+    <div class="modal-step"><div class="step-num" style="background:#003087">4</div><div><div class="step-title">Note obligatoire</div><div class="step-sub">Écrivez votre compte et numéro téléphone dans la note PayPal</div></div></div>
+    <div class="modal-step"><div class="step-num" style="background:#22d87a">5</div><div><div class="step-title" style="color:var(--green)">Envoyez la preuve</div><div class="step-sub">Screenshot du paiement sur WhatsApp</div></div></div>
+    <a href="https://wa.me/221770299603" target="_blank" class="whatsapp-btn">
+      <svg viewBox="0 0 24 24" fill="white" width="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.478 2 2 6.478 2 12c0 1.85.504 3.585 1.38 5.07L2 22l5.085-1.33A9.945 9.945 0 0012 22c5.522 0 10-4.478 10-10S17.522 2 11.999 2z"/></svg>
+      Confirmer sur WhatsApp
+    </a>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DATA ──────────────────────────────────────
+const PLATFORMS = {
+  instagram:{name:'Instagram',emoji:'📸',inputLabel:'Lien du compte Instagram',placeholder:'instagram.com/votre_compte',metric:'Followers',icon:'insta'},
+  facebook:{name:'Facebook',emoji:'👥',inputLabel:'Lien de la page Facebook',placeholder:'facebook.com/votre_page',metric:'Abonnés',icon:'fb'},
+  tiktok:{name:'TikTok',emoji:'🎵',inputLabel:'Lien du profil TikTok',placeholder:'tiktok.com/@votre_compte',metric:'Followers',icon:'tiktok'},
+  snapchat:{name:'Snapchat',emoji:'👻',inputLabel:"Nom d'utilisateur Snapchat",placeholder:'votre_username',metric:'Abonnés',icon:'snap'},
+  youtube:{name:'YouTube',emoji:'▶️',inputLabel:'Lien de la chaîne YouTube',placeholder:'youtube.com/@votre_chaine',metric:'Abonnés',icon:'yt'},
+  twitter:{name:'Twitter/X',emoji:'🐦',inputLabel:'Lien du profil Twitter/X',placeholder:'twitter.com/votre_compte',metric:'Abonnés',icon:'tw'}
+};
+const PACKS = [
+  {qty:'500',price:2500,perks:['Livraison ~2h','Qualité garantie','Sans mot de passe']},
+  {qty:'1 000',price:5000,popular:true,perks:['Livraison ~6h','Followers actifs','Garantie 30j']},
+  {qty:'5 000',price:20000,perks:['Livraison ~12h','Boost algorithmique','Support prioritaire']},
+  {qty:'10 000',price:35000,perks:['Livraison ~24h','Meilleur rapport qualité/prix','Manager dédié']}
+];
+const TRACKER_ORDERS = {
+  'SN-2025-0001':{status:3,platform:'Instagram',qty:'1 000',price:'5 000'},
+  'SN-2025-0002':{status:2,platform:'TikTok',qty:'5 000',price:'20 000'},
+  'SN-2025-0003':{status:1,platform:'Facebook',qty:'500',price:'2 500'},
+};
+const STEPS_DEF = [
+  {title:'Paiement reçu',sub:'Paiement confirmé'},
+  {title:'Commande validée',sub:'En cours de traitement'},
+  {title:'Livraison en cours',sub:'Followers en route'},
+  {title:'Livraison terminée',sub:'100% livrés ✓'},
+];
+
+let currentPlatform = 'instagram';
+let selectedPackIdx = 1;
+
+// ── INIT ──────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function(){
+  renderPacks();
+  renderPackSelect();
+  updateBanner();
+
+  // Theme
+  document.getElementById('theme-btn').addEventListener('click', toggleTheme);
+
+  // Platform tabs
+  document.querySelectorAll('.p-tab').forEach(tab => {
+    tab.addEventListener('click', function(){ setPlatform(this); });
+  });
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', function(){ toggleFaq(this); });
+  });
+
+  // Pack select dropdown
+  document.getElementById('pack-select').addEventListener('change', function(){
+    selectedPackIdx = parseInt(this.value);
+    renderPacks();
+    updateBanner();
+  });
+
+  // Tracker
+  document.getElementById('btn-track').addEventListener('click', trackOrder);
+  document.getElementById('tracker-id').addEventListener('keydown', function(e){ if(e.key==='Enter') trackOrder(); });
+
+  // Payment buttons - validate form first for Wave & Orange
+  document.getElementById('btn-wave').addEventListener('click', function(e){
+    if(!validateForm()){ e.preventDefault(); return false; }
+    showToast('✅ Redirection vers Wave...');
+  });
+  document.getElementById('btn-orange').addEventListener('click', function(e){
+    if(!validateForm()){ e.preventDefault(); return false; }
+    showToast('✅ Redirection vers Orange Money...');
+  });
+  document.getElementById('btn-paypal').addEventListener('click', function(){
+    if(!validateForm()) return;
+    openPaypalModal();
+  });
+
+  // Modal closes
+  document.getElementById('close-orange').addEventListener('click', function(){ document.getElementById('modal-orange').classList.remove('show'); });
+  document.getElementById('close-paypal').addEventListener('click', function(){ document.getElementById('modal-paypal').classList.remove('show'); });
+  document.getElementById('modal-orange').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('show'); });
+  document.getElementById('modal-paypal').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('show'); });
+
+  // Copy email
+  document.getElementById('copy-email').addEventListener('click', function(){
+    navigator.clipboard.writeText('ameth29.130@gmail.com').then(function(){
+      document.getElementById('copy-email').textContent = '✅';
+      setTimeout(function(){ document.getElementById('copy-email').textContent = 'Copier'; }, 2000);
+    });
+  });
+
+  // Admin hidden trigger
+  var adminClicks = 0;
+  document.getElementById('admin-trigger').addEventListener('click', function(){
+    adminClicks++;
+    if(adminClicks >= 5){ window.location.href='admin.html'; }
+    setTimeout(function(){ adminClicks = 0; }, 3000);
+  });
+
+  // Clear errors on input
+  document.getElementById('account-link').addEventListener('input', function(){ document.getElementById('link-err').classList.remove('show'); });
+  document.getElementById('phone-num').addEventListener('input', function(){ document.getElementById('phone-err').classList.remove('show'); });
+});
+
+// ── PACKS ─────────────────────────────────────
+function renderPacks(){
+  var p = PLATFORMS[currentPlatform];
+  var grid = document.getElementById('packs-grid');
+  grid.innerHTML = PACKS.map(function(pk, i){
+    return '<div class="pack-card'+(i===selectedPackIdx?' selected':'')+'" data-i="'+i+'">'
+      +(pk.popular?'<div class="pack-popular">⚡ Populaire</div>':'')
+      +'<div class="pack-icon">'+p.emoji+'</div>'
+      +'<div class="pack-qty">'+pk.qty+' <span>'+p.metric+'</span></div>'
+      +'<div class="pack-price">'+pk.price.toLocaleString('fr-FR')+' <small>FCFA</small></div>'
+      +'<div class="pack-perks">'
+      +pk.perks.map(function(perk){ return '<div class="pack-perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>'+perk+'</div>'; }).join('')
+      +'</div></div>';
+  }).join('');
+  grid.querySelectorAll('.pack-card').forEach(function(card){
+    card.addEventListener('click', function(){
+      selectedPackIdx = parseInt(this.dataset.i);
+      renderPacks();
+      updateBanner();
+      renderPackSelect();
+    });
+  });
+}
+
+function renderPackSelect(){
+  var p = PLATFORMS[currentPlatform];
+  var sel = document.getElementById('pack-select');
+  sel.innerHTML = PACKS.map(function(pk, i){
+    return '<option value="'+i+'"'+(i===selectedPackIdx?' selected':'')+'>'+pk.qty+' '+p.metric+' — '+pk.price.toLocaleString('fr-FR')+' FCFA</option>';
+  }).join('');
+}
+
+function updateBanner(){
+  var p = PLATFORMS[currentPlatform];
+  var pk = PACKS[selectedPackIdx];
+  document.getElementById('sel-pack-name').textContent = pk.qty+' '+p.metric+' '+p.name;
+  document.getElementById('sel-pack-price').textContent = pk.price.toLocaleString('fr-FR')+' FCFA';
+}
+
+// ── PLATFORM ──────────────────────────────────
+function setPlatform(tab){
+  document.querySelectorAll('.p-tab').forEach(function(t){ t.classList.remove('active'); });
+  tab.classList.add('active');
+  currentPlatform = tab.dataset.p;
+  var p = PLATFORMS[currentPlatform];
+  document.getElementById('packs-title').textContent = '🚀 Packs '+p.name;
+  document.getElementById('link-label').textContent = p.inputLabel;
+  document.getElementById('account-link').placeholder = p.placeholder;
+  document.getElementById('account-link').value = '';
+  document.getElementById('link-err').classList.remove('show');
+  renderPacks();
+  updateBanner();
+  renderPackSelect();
+}
+
+// ── FORM VALIDATION ───────────────────────────
+function validateForm(){
+  var link = document.getElementById('account-link');
+  var phone = document.getElementById('phone-num');
+  var valid = true;
+  if(link.value.trim().length < 3){
+    document.getElementById('link-err').classList.add('show');
+    link.classList.remove('shake'); void link.offsetWidth; link.classList.add('shake');
+    setTimeout(function(){ link.classList.remove('shake'); }, 500);
+    valid = false;
+  }
+  if(phone.value.trim().length < 8){
+    document.getElementById('phone-err').classList.add('show');
+    phone.classList.remove('shake'); void phone.offsetWidth; phone.classList.add('shake');
+    setTimeout(function(){ phone.classList.remove('shake'); }, 500);
+    valid = false;
+  }
+  return valid;
+}
+
+// ── PAYPAL MODAL ──────────────────────────────
+function openPaypalModal(){
+  var pk = PACKS[selectedPackIdx];
+  var p = PLATFORMS[currentPlatform];
+  document.getElementById('pp-amount').textContent = pk.price.toLocaleString('fr-FR')+' FCFA';
+  document.getElementById('pp-pack').textContent = 'Pour : '+pk.qty+' '+p.metric+' '+p.name;
+  document.getElementById('modal-paypal').classList.add('show');
+}
+
+// ── TRACKER ───────────────────────────────────
+function trackOrder(){
+  var id = document.getElementById('tracker-id').value.trim().toUpperCase();
+  var result = document.getElementById('tracker-result');
+  var steps = document.getElementById('tracker-steps');
+  var order = TRACKER_ORDERS[id];
+  if(!order){
+    steps.innerHTML = '<div style="color:var(--red);font-size:13px;padding:12px 0">❌ Commande introuvable. Vérifiez le numéro.</div>';
+    result.classList.add('show');
+    return;
+  }
+  steps.innerHTML = STEPS_DEF.map(function(s, i){
+    var state = i < order.status ? 'done' : i === order.status ? 'active' : 'pending';
+    var dot = state==='done'?'✓':state==='active'?'●':'○';
+    return '<div class="t-step"><div class="t-dot-wrap"><div class="t-dot '+state+'">'+dot+'</div><div class="t-line"></div></div>'
+      +'<div class="t-body"><div class="t-title" style="color:'+(state==='pending'?'var(--text3)':'var(--text)')+'">'+s.title+'</div>'
+      +'<div class="t-sub">'+s.sub+'</div>'
+      +(state==='done'?'<div class="t-time">✅ Complété</div>':'')
+      +(state==='active'?'<div class="t-time" style="color:var(--accent)">⏳ En cours...</div>':'')
+      +'</div></div>';
+  }).join('');
+  result.classList.add('show');
+}
+
+// ── FAQ ───────────────────────────────────────
+function toggleFaq(el){
+  var item = el.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+  if(!isOpen) item.classList.add('open');
+}
+
+// ── THEME ─────────────────────────────────────
+function toggleTheme(){
+  var html = document.documentElement;
+  var isDark = html.dataset.theme === 'dark';
+  html.dataset.theme = isDark ? 'light' : 'dark';
+  document.getElementById('theme-btn').textContent = isDark ? '🌙' : '☀️';
+}
+
+// ── TOAST ─────────────────────────────────────
+function showToast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 3000);
+}
+</script>
+</body>
+</html>
